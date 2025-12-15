@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Scout Salone</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --pure-black: #000000;
+            --dark-bg: #0a0a0a;
+            --surface-bg: #111111;
+            --card-bg: #1a1a1a;
+            --border-dark: #2a2a2a;
+            --border-light: #3a3a3a;
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --text-tertiary: #888888;
+            --accent: #ffffff;
+            --accent-hover: #f0f0f0;
+            --success: #00d95f;
+            --error: #ff4757;
+            --gradient: linear-gradient(135deg, #ffffff 0%, #888888 100%);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --glow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid var(--border-dark);
+            padding: 20px 40px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--text-primary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .logo-icon {
+            font-size: 22px;
+            color: var(--text-primary);
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-tertiary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            position: relative;
+            padding: 8px 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a.active {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 1px;
+            box-shadow: var(--glow);
+        }
+
+        /* CONTENT GRID */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            position: sticky;
+            top: 120px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--surface-bg);
+            color: var(--text-secondary);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-dark);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 400px;
+        }
+
+        /* CONTACT INFO */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 24px;
+            background: var(--surface-bg);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-dark);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .contact-item:hover::before {
+            transform: translateX(100%);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--border-light);
+            background: var(--card-bg);
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--card-bg);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-dark);
+            font-size: 20px;
+            color: var(--text-primary);
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover .contact-icon {
+            border-color: var(--border-light);
+            transform: scale(1.1);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-details h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .contact-details p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .contact-details small {
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        /* SOCIAL LINKS */
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 18px;
+            transition: var(--transition);
+            background: var(--surface-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+        }
+
+        .social-link:hover {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            border-color: var(--border-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .social-link:hover::before {
+            animation: slide 0.6s ease;
+        }
+
+        @keyframes slide {
+            to {
+                transform: translateX(100%);
+            }
+        }
+
+        /* FORM SECTION */
+        .form-section {
+            background: var(--surface-bg);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            border: 1px solid var(--border-dark);
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .form-header {
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            background: linear-gradient(90deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        /* FORM STYLES */
+        .form-group {
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px;
+            font-size: 15px;
+            border: 1px solid var(--border-dark);
+            border-radius: var(--radius-sm);
+            background: var(--card-bg);
+            color: var(--text-primary);
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-control::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--border-light);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+            background: var(--surface-bg);
+        }
+
+        .form-control:hover:not(:focus) {
+            border-color: var(--border-light);
+        }
+
+        /* FLOATING LABEL EFFECT */
+        .floating-label {
+            position: absolute;
+            top: 50%;
+            left: 16px;
+            transform: translateY(-50%);
+            color: var(--text-tertiary);
+            font-size: 15px;
+            pointer-events: none;
+            transition: var(--transition);
+            background: var(--card-bg);
+            padding: 0 8px;
+            border-radius: 4px;
+        }
+
+        .form-control:focus+.floating-label,
+        .form-control:not(:placeholder-shown)+.floating-label {
+            top: 0;
+            transform: translateY(-50%) scale(0.85);
+            color: var(--text-primary);
+            font-weight: 500;
+            background: var(--surface-bg);
+        }
+
+        /* TEXTAREA */
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+        }
+
+        /* SELECT STYLING */
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper::after {
+            content: '⌄';
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--text-tertiary);
+            font-size: 20px;
+        }
+
+        select.form-control {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        /* CHECKBOX STYLING */
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .checkbox-wrapper {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .checkbox-input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .checkbox-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-dark);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--card-bg);
+        }
+
+        .checkbox-input:checked~.checkbox-custom {
+            background: var(--text-primary);
+            border-color: var(--text-primary);
+        }
+
+        .checkbox-input:checked~.checkbox-custom::after {
+            content: '✓';
+            color: var(--dark-bg);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .checkbox-label a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .checkbox-label a:hover {
+            border-bottom-color: var(--text-primary);
+        }
+
+        /* SUBMIT BUTTON */
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--text-primary);
+            color: var(--dark-bg);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .submit-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .submit-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover:not(:disabled) i {
+            transform: translateX(4px);
+        }
+
+        /* FORM STATUS */
+        .form-status {
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            margin-top: 24px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            animation: slideIn 0.3s ease;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-status.success {
+            background: rgba(0, 217, 95, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+            display: flex;
+        }
+
+        .form-status.error {
+            background: rgba(255, 71, 87, 0.1);
+            border: 1px solid var(--error);
+            color: var(--error);
+            display: flex;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .hero-section {
+                position: static;
+            }
+
+            .hero-title {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 16px 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                padding: 100px 24px 60px;
+            }
+
+            .form-section {
+                padding: 32px;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .form-section {
+                padding: 24px;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .contact-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+        }
+
+        /* MICRO-INTERACTIONS */
+        .shake {
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-5px);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(5px);
+            }
+        }
+
+        /* LOADING ANIMATION */
+        .loading {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--dark-bg);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* FLOATING ANIMATION */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+
+            33% {
+                transform: translateY(-5px) translateX(2px);
+            }
+
+            66% {
+                transform: translateY(2px) translateX(-2px);
+            }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* GLOW EFFECTS */
+        .glow-text {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* BACKGROUND PATTERNS */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- BACKGROUND PATTERNS -->
+    <div class="bg-pattern"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="home.html" class="logo">
+            <span class="logo-icon">⚽</span>
+            <span>SCOUT SALONE</span>
+        </a>
+        <div class="nav-links">
+            <a href="home.php">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" class="active">Contact</a>
+            <a href="players.php">Players</a>
+            <a href="clubs.html">Clubs</a>
+            <a href="matches.html">Matches</a>
+            <a href="login.php">Login</a>
+            <a href="register.php">Register</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <!-- HERO SECTION -->
+        <div class="hero-section">
+            <div class="badge">Connect With Us</div>
+            <h1 class="hero-title">Let's Build Football's Future Together</h1>
+            <p class="hero-subtitle">
+                Whether you're a talented player, a club looking for talent,
+                or want to collaborate with us—we're here to connect. Reach out and start the conversation.
+            </p>
+
+            <!-- CONTACT INFO -->
+            <div class="contact-info">
+                <div class="contact-item floating" style="animation-delay: 0.1s">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3 class="glow-text">Headquarters</h3>
+                        <p>123 Talent Avenue</p>
+                        <p>Freetown, Sierra Leone</p>
+                        <small>Monday-Friday • 9AM-6PM</small>
+                    </div>
+                </div>
+
+                <div class="contact-item floating" style="animation-delay: 0.3s">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3 class="glow-text">Phone & WhatsApp</h3>
+                        <p>+232 00 123 4567</p>
+                        <p>+232 00 987 6543</p>
+                        <small>Emergency line available 24/7</small>
+                    </div>
+                </div>
+
+                <div class="contact-item floating" style="animation-delay: 0.5s">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3 class="glow-text">Email & Support</h3>
+                        <p>contact@scoutsalone.com</p>
+                        <p>support@scoutsalone.com</p>
+                        <small>Response guaranteed within 24 hours</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOCIAL LINKS -->
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- FORM SECTION -->
+        <div class="form-section">
+            <div class="form-header">
+                <h2 class="form-title">Send Us A Message</h2>
+                <p class="form-subtitle">
+                    Fill out the form below and our team will get back to you within 24 hours.
+                    All fields marked with * are required.
+                </p>
+            </div>
+
+            <form id="contactForm">
+                <!-- FORM STATUS MESSAGE -->
+                <div id="formStatus" class="form-status"></div>
+
+                <div class="form-group">
+                    <label class="form-label" for="name">Full Name *</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="name" class="form-control" placeholder=" " required>
+                        <span class="floating-label">Your full name</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address *</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" class="form-control" placeholder=" " required>
+                        <span class="floating-label">you@example.com</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="phone">Phone Number</label>
+                    <div class="input-wrapper">
+                        <input type="tel" id="phone" class="form-control" placeholder=" ">
+                        <span class="floating-label">+232 00 000 0000</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="inquiry">Inquiry Type *</label>
+                    <div class="select-wrapper">
+                        <select id="inquiry" class="form-control" required>
+                            <option value="" selected disabled>Select an option</option>
+                            <option value="player">Player Representation</option>
+                            <option value="trial">Trial Request</option>
+                            <option value="club">Club Partnership</option>
+                            <option value="scouting">Scouting Services</option>
+                            <option value="investment">Investment Opportunity</option>
+                            <option value="media">Media Inquiry</option>
+                            <option value="general">General Inquiry</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="location">Your Location</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="location" class="form-control" placeholder=" ">
+                        <span class="floating-label">City, Country</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="message">Your Message *</label>
+                    <textarea id="message" class="form-control"
+                        placeholder="Tell us about your inquiry, goals, or how we can help you..." required
+                        rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="newsletter" class="checkbox-input" checked>
+                            <span class="checkbox-custom"></span>
+                        </div>
+                        <label for="newsletter" class="checkbox-label">
+                            Subscribe to our weekly newsletter for player updates, trial opportunities, and football
+                            insights.
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="terms" class="checkbox-input" required>
+                            <span class="checkbox-custom"></span>
+                        </div>
+                        <label for="terms" class="checkbox-label">
+                            I agree to the <a href="#" target="_blank">Terms of Service</a> and
+                            <a href="#" target="_blank">Privacy Policy</a>. I understand my data will be processed
+                            securely. *
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span>Send Message</span>
+                    <i class="fas fa-paper-plane"></i>
+                    <div class="loading" id="loadingSpinner"></div>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const formStatus = document.getElementById('formStatus');
+
+        // Enhanced Form Validation
+        function validateForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const inquiry = document.getElementById('inquiry').value;
+            const message = document.getElementById('message').value.trim();
+            const terms = document.getElementById('terms').checked;
+
+            // Reset status
+            formStatus.className = 'form-status';
+            formStatus.style.display = 'none';
+
+            // Validate required fields with specific messages
+            if (!name) {
+                showError('👤 Please enter your full name');
+                document.getElementById('name').focus();
+                return false;
+            }
+
+            if (!email) {
+                showError('📧 Please enter your email address');
+                document.getElementById('email').focus();
+                return false;
+            }
+
+            if (!validateEmail(email)) {
+                showError('📧 Please enter a valid email address (e.g., name@example.com)');
+                document.getElementById('email').focus();
+                return false;
+            }
+
+            if (!inquiry) {
+                showError('🎯 Please select an inquiry type');
+                document.getElementById('inquiry').focus();
+                return false;
+            }
+
+            if (!message) {
+                showError('💭 Please enter your message');
+                document.getElementById('message').focus();
+                return false;
+            }
+
+            if (message.length < 20) {
+                showError('💭 Please provide more details in your message (minimum 20 characters)');
+                document.getElementById('message').focus();
+                return false;
+            }
+
+            if (!terms) {
+                showError('✅ Please agree to the terms and conditions');
+                return false;
+            }
+
+            return true;
+        }
+
+        // Enhanced Email Validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Show Error Message with emoji
+        function showError(message) {
+            formStatus.className = 'form-status error';
+            formStatus.innerHTML = `
+                <i class="fas fa-exclamation-circle"></i>
+                <span>${message}</span>
+            `;
+            formStatus.style.display = 'flex';
+
+            // Enhanced shake animation
+            formStatus.classList.add('shake');
+            setTimeout(() => formStatus.classList.remove('shake'), 500);
+
+            // Scroll to error with smooth animation
+            formStatus.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+                inline: 'nearest'
+            });
+        }
+
+        // Show Success Message with celebration
+        function showSuccess(message) {
+            formStatus.className = 'form-status success';
+            formStatus.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <span>${message}</span>
+            `;
+            formStatus.style.display = 'flex';
+
+            // Scroll to success message
+            formStatus.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+                inline: 'nearest'
+            });
+
+            // Add confetti effect (visual only)
+            setTimeout(() => {
+                formStatus.innerHTML += ' 🎉';
+            }, 500);
+        }
+
+        // Enhanced Form Submission
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (!validateForm()) return;
+
+            // Show loading state with enhanced UI
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.8';
+            submitBtn.querySelector('span').style.opacity = '0.5';
+            submitBtn.querySelector('i').style.display = 'none';
+            loadingSpinner.style.display = 'block';
+
+            // Simulate API call with realistic timing
+            try {
+                // Show typing indicator simulation
+                setTimeout(() => {
+                    loadingSpinner.style.borderTopColor = 'var(--success)';
+                }, 500);
+
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                // Success response with celebration
+                showSuccess('✅ Message sent successfully! Our team will contact you within 24 hours.');
+
+                // Enhanced form reset with animation
+                contactForm.reset();
+
+                // Reset checkboxes with visual feedback
+                document.getElementById('newsletter').checked = true;
+                document.getElementById('terms').checked = false;
+
+                // Add success animation to button
+                submitBtn.style.background = 'var(--success)';
+                submitBtn.style.color = 'var(--dark-bg)';
+                setTimeout(() => {
+                    submitBtn.style.background = 'var(--text-primary)';
+                    submitBtn.style.color = 'var(--dark-bg)';
+                }, 1000);
+
+            } catch (error) {
+                showError('❌ Something went wrong. Please try again or email us directly at contact@scoutsalone.com');
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                submitBtn.querySelector('span').style.opacity = '1';
+                submitBtn.querySelector('i').style.display = 'inline-block';
+                loadingSpinner.style.display = 'none';
+                loadingSpinner.style.borderTopColor = 'var(--dark-bg)';
+            }
+        });
+
+        // Enhanced floating label functionality
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('input', function () {
+                const label = this.nextElementSibling;
+                if (this.value.trim()) {
+                    label.style.top = '0';
+                    label.style.transform = 'translateY(-50%) scale(0.85)';
+                    label.style.color = 'var(--text-primary)';
+                    label.style.background = 'var(--surface-bg)';
+                } else if (!this.matches(':focus')) {
+                    label.style.top = '50%';
+                    label.style.transform = 'translateY(-50%)';
+                    label.style.color = 'var(--text-tertiary)';
+                    label.style.background = 'var(--card-bg)';
+                }
+            });
+
+            input.addEventListener('focus', function () {
+                const label = this.nextElementSibling;
+                label.style.top = '0';
+                label.style.transform = 'translateY(-50%) scale(0.85)';
+                label.style.color = 'var(--text-primary)';
+                label.style.background = 'var(--surface-bg)';
+
+                // Add focus glow effect
+                this.style.boxShadow = '0 0 0 3px rgba(255, 255, 255, 0.1)';
+            });
+
+            input.addEventListener('blur', function () {
+                const label = this.nextElementSibling;
+                if (!this.value.trim()) {
+                    label.style.top = '50%';
+                    label.style.transform = 'translateY(-50%)';
+                    label.style.color = 'var(--text-tertiary)';
+                    label.style.background = 'var(--card-bg)';
+                }
+
+                // Remove focus glow
+                this.style.boxShadow = '';
+            });
+        });
+
+        // Auto-hide status message with fade out
+        contactForm.addEventListener('input', () => {
+            if (formStatus.style.display === 'flex') {
+                setTimeout(() => {
+                    formStatus.style.opacity = '0';
+                    formStatus.style.transition = 'opacity 0.5s ease';
+                    setTimeout(() => {
+                        formStatus.style.display = 'none';
+                        formStatus.style.opacity = '1';
+                    }, 500);
+                }, 5000);
+            }
+        });
+
+        // Enhanced click effects for contact items
+        document.querySelectorAll('.contact-item').forEach(item => {
+            item.addEventListener('click', function () {
+                this.style.transform = 'translateY(-4px) scale(1.02)';
+                this.style.boxShadow = 'var(--shadow-lg)';
+
+                // Add ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.1)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (event.clientX - rect.left - size / 2) + 'px';
+                ripple.style.top = (event.clientY - rect.top - size / 2) + 'px';
+
+                this.appendChild(ripple);
+
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+
+                setTimeout(() => {
+                    if (!this.matches(':hover')) {
+                        this.style.transform = 'translateY(0) scale(1)';
+                        this.style.boxShadow = '';
+                    }
+                }, 300);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Phone number formatting
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', function () {
+            let value = this.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                value = '+' + value;
+                if (value.length > 4) {
+                    value = value.substring(0, 4) + ' ' + value.substring(4);
+                }
+                if (value.length > 8) {
+                    value = value.substring(0, 8) + ' ' + value.substring(8);
+                }
+                if (value.length > 12) {
+                    value = value.substring(0, 12) + ' ' + value.substring(12);
+                }
+            }
+            this.value = value;
+        });
+
+        // Character counter for message
+        const messageInput = document.getElementById('message');
+        const counter = document.createElement('div');
+        counter.style.fontSize = '12px';
+        counter.style.color = 'var(--text-tertiary)';
+        counter.style.textAlign = 'right';
+        counter.style.marginTop = '4px';
+        messageInput.parentNode.appendChild(counter);
+
+        messageInput.addEventListener('input', function () {
+            const count = this.value.length;
+            counter.textContent = `${count} characters`;
+
+            if (count < 20) {
+                counter.style.color = 'var(--error)';
+            } else if (count > 500) {
+                counter.style.color = 'var(--text-tertiary)';
+            } else {
+                counter.style.color = 'var(--text-secondary)';
+            }
+        });
+    </script>
+</body>
+
+</html>

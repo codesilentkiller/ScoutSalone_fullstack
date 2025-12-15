@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixtures - Scout Salone Football Agency</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --pure-white: #ffffff;
+            --light-white: rgba(255, 255, 255, 0.9);
+            --soft-white: rgba(255, 255, 255, 0.7);
+            --faint-white: rgba(255, 255, 255, 0.15);
+            --dark-bg: #000000;
+            --card-bg: #0a0a0a;
+            --border-glow: rgba(255, 255, 255, 0.25);
+            --hover-glow: rgba(255, 255, 255, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--pure-white);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Subtle gradient overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(40, 40, 40, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(60, 60, 60, 0.2) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        /* PAGE GRID */
+        .page-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 40px;
+            max-width: 1500px;
+            margin: auto;
+            padding: 80px 20px;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px) brightness(1.2);
+            border-bottom: 1px solid var(--faint-white);
+            box-shadow: 0 4px 30px rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 40px;
+        }
+
+        .nav-logo {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: var(--pure-white);
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .nav-logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--pure-white);
+            box-shadow: 0 0 10px var(--pure-white);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-links a {
+            margin-left: 35px;
+            text-decoration: none;
+            color: var(--soft-white);
+            font-size: 17px;
+            font-weight: 600;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        /* Animated underline hover */
+        .nav-links a::before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--pure-white);
+            bottom: 0;
+            left: 0;
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 8px var(--pure-white);
+        }
+
+        .nav-links a:hover {
+            color: var(--pure-white);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--pure-white);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+        }
+
+        .nav-links a.active::before {
+            width: 100%;
+        }
+
+        /* MOBILE TOGGLE */
+        .nav-toggle {
+            display: none;
+            color: var(--pure-white);
+            font-size: 26px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                right: 0;
+                background: rgba(0, 0, 0, 0.98);
+                backdrop-filter: blur(20px);
+                width: 220px;
+                padding: 25px;
+                display: none;
+                flex-direction: column;
+                border-left: 1px solid var(--faint-white);
+                border-bottom: 1px solid var(--faint-white);
+                box-shadow: -5px 10px 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-links a {
+                margin: 12px 0;
+                font-size: 18px;
+                padding: 10px 15px;
+                border-radius: 6px;
+            }
+
+            .nav-links a:hover {
+                background: rgba(255, 255, 255, 0.05);
+                transform: translateX(5px);
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+        }
+
+        /* Show menu */
+        .show-menu {
+            display: flex !important;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: rgba(10, 10, 10, 0.8);
+            border-left: 1px solid var(--faint-white);
+            padding: 30px;
+            border-radius: 20px;
+            height: max-content;
+            position: sticky;
+            top: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar:hover {
+            box-shadow: 0 8px 40px rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar h3 {
+            color: var(--pure-white);
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .sidebar h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--pure-white), transparent);
+            box-shadow: 0 0 10px var(--pure-white);
+        }
+
+        .table-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--faint-white);
+            transition: all 0.4s ease;
+        }
+
+        .table-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--border-glow);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.08);
+        }
+
+        .league-table {
+            width: 100%;
+            font-size: 14px;
+            border-collapse: collapse;
+        }
+
+        .league-table th {
+            color: var(--pure-white);
+            text-align: left;
+            padding-bottom: 12px;
+            font-weight: 700;
+            border-bottom: 1px solid var(--faint-white);
+        }
+
+        .league-table td {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .league-table tr:hover td {
+            color: var(--light-white);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* MAIN CONTENT */
+        .fixtures-section h2 {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--pure-white);
+            margin-bottom: 60px;
+            position: relative;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+        }
+
+        .fixtures-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: var(--pure-white);
+            box-shadow: 0 0 20px var(--pure-white);
+        }
+
+        .competition {
+            margin-bottom: 60px;
+            padding: 40px;
+            border-radius: 24px;
+            background: rgba(10, 10, 10, 0.7);
+            border: 1px solid var(--faint-white);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .competition::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .competition:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-glow);
+            box-shadow: 0 15px 50px rgba(255, 255, 255, 0.1);
+        }
+
+        .competition:hover::before {
+            opacity: 1;
+        }
+
+        .competition h3 {
+            color: var(--pure-white);
+            font-size: 28px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .competition h3 i {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* FIXTURE CARD */
+        .fixture-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 25px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            border: 1px solid var(--faint-white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fixture-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .fixture-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateX(10px) scale(1.02);
+            border-color: var(--border-glow);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.08);
+        }
+
+        .fixture-card:hover::before {
+            left: 100%;
+        }
+
+        .fixture-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .fixture-teams {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--light-white);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .fixture-date {
+            color: var(--soft-white);
+            font-weight: 600;
+            padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid var(--faint-white);
+        }
+
+        .fixture-info {
+            margin-top: 15px;
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--soft-white);
+        }
+
+        .fixture-info i {
+            color: var(--pure-white);
+            margin-right: 10px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        .fixture-info div {
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            color: var(--soft-white);
+            padding: 30px;
+            border-top: 1px solid var(--faint-white);
+            margin-top: 60px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            font-size: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media(max-width:1100px) {
+            .page-wrapper {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+        }
+
+        @media(max-width:768px) {
+            .fixtures-section h2 {
+                font-size: 36px;
+                margin-bottom: 40px;
+            }
+
+            .competition {
+                padding: 25px;
+            }
+
+            .fixture-teams {
+                font-size: 18px;
+            }
+
+            .fixture-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .fixture-date {
+                align-self: flex-start;
+            }
+        }
+
+        @media(max-width:600px) {
+            .nav-container {
+                padding: 15px 20px;
+            }
+
+            .nav-logo {
+                font-size: 22px;
+            }
+
+            .fixtures-section h2 {
+                font-size: 32px;
+            }
+
+            .competition h3 {
+                font-size: 24px;
+            }
+        }
+
+        /* Animation for page load */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .competition, .sidebar, .fixtures-section h2 {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .competition:nth-child(2) { animation-delay: 0.2s; }
+        .competition:nth-child(3) { animation-delay: 0.4s; }
+        .sidebar { animation-delay: 0.6s; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Scout Salone</div>
+
+            <div class="nav-links" id="navLinks">
+                <a href="home.php" class="active">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="players.php">Players</a>
+                <a href="clubs.html">Clubs</a>
+                <a href="matches.html" class="active">Matches</a>
+                <a href="login.php">Login</a>
+                <a href="register.php">Register</a>
+            </div>
+
+            <div class="nav-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-wrapper">
+
+        <!-- MAIN FIXTURES -->
+        <section class="fixtures-section">
+            <h2>Upcoming Fixtures</h2>
+
+            <!-- PREMIER LEAGUE -->
+            <div class="competition">
+                <h3><i class="fas fa-trophy"></i> Premier League</h3>
+
+                <!-- FIXTURE TEMPLATE -->
+                <div class="fixture-card">
+                    <div class="fixture-top">
+                        <div class="fixture-teams">Team A vs Team B</div>
+                        <div class="fixture-date">20 Nov 2025 - 4:00 PM</div>
+                    </div>
+
+                    <div class="fixture-info">
+                        <div><i class="fas fa-location-dot"></i> National Stadium, Freetown</div>
+                        <div><i class="fas fa-whistle"></i> Referee: John Kamara</div>
+                    </div>
+                </div>
+
+                <div class="fixture-card">
+                    <div class="fixture-top">
+                        <div class="fixture-teams">Team C vs Team D</div>
+                        <div class="fixture-date">21 Nov 2025 - 6:00 PM</div>
+                    </div>
+
+                    <div class="fixture-info">
+                        <div><i class="fas fa-location-dot"></i> Bo Stadium, Bo Town</div>
+                        <div><i class="fas fa-whistle"></i> Referee: Musa Conteh</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CHAMPIONS CUP -->
+            <div class="competition">
+                <h3><i class="fas fa-trophy"></i> Champions Cup</h3>
+
+                <div class="fixture-card">
+                    <div class="fixture-top">
+                        <div class="fixture-teams">Team M vs Team N</div>
+                        <div class="fixture-date">27 Nov 2025 - 3:00 PM</div>
+                    </div>
+
+                    <div class="fixture-info">
+                        <div><i class="fas fa-location-dot"></i> Makeni Arena</div>
+                        <div><i class="fas fa-whistle"></i> Referee: Lamin Bangura</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <h3>Premier League Table</h3>
+
+            <div class="table-card">
+                <table class="league-table">
+                    <tr>
+                        <th>#</th>
+                        <th>Team</th>
+                        <th>Pts</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Team A</td>
+                        <td>44</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Team B</td>
+                        <td>40</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Team C</td>
+                        <td>38</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Team D</td>
+                        <td>35</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Team E</td>
+                        <td>33</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Team F</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Team G</td>
+                        <td>29</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Team H</td>
+                        <td>27</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Team I</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Team J</td>
+                        <td>24</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Team K</td>
+                        <td>22</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Team L</td>
+                        <td>21</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Team M</td>
+                        <td>19</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Team N</td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>Team O</td>
+                        <td>17</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>Team P</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>Team Q</td>
+                        <td>14</td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>Team R</td>
+                        <td>13</td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>Team S</td>
+                        <td>11</td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>Team T</td>
+                        <td>8</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Other Leagues</h3>
+            <div class="table-card">
+                <p style="text-align:center; color:var(--light-white); font-weight:600; margin:0; padding:10px;">Championship</p>
+            </div>
+            <div class="table-card">
+                <p style="text-align:center; color:var(--light-white); font-weight:600; margin:0; padding:10px;">National League</p>
+            </div>
+            <div class="table-card">
+                <p style="text-align:center; color:var(--light-white); font-weight:600; margin:0; padding:10px;">Youth League</p>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <footer>2025 Scout Salone Football Agency © All Rights Reserved</footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('show-menu');
+        }
+
+        // Close menu when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const navToggle = document.querySelector('.nav-toggle');
+            
+            if (window.innerWidth <= 900) {
+                if (!navLinks.contains(event.target) && !navToggle.contains(event.target)) {
+                    navLinks.classList.remove('show-menu');
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

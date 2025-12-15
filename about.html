@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Scout Salone Football Agency</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pure-white: #ffffff;
+            --light-white: rgba(255, 255, 255, 0.95);
+            --soft-white: rgba(255, 255, 255, 0.75);
+            --medium-grey: rgba(255, 255, 255, 0.5);
+            --light-grey: rgba(255, 255, 255, 0.3);
+            --faint-white: rgba(255, 255, 255, 0.12);
+            --dark-grey: rgba(255, 255, 255, 0.08);
+            --darker-grey: rgba(255, 255, 255, 0.04);
+            --dark-bg: #000000;
+            --white-glow: rgba(255, 255, 255, 0.8);
+            --grey-glow: rgba(255, 255, 255, 0.3);
+            --light-glow: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--pure-white);
+            overflow-x: hidden;
+            cursor: default;
+            position: relative;
+        }
+
+        /* STATIC BACKGROUND ELEMENTS */
+        .static-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 40%),
+                linear-gradient(45deg, #000 0%, #0a0a0a 100%);
+        }
+
+        .static-grid {
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 80px 80px;
+            transform: perspective(500px) rotateX(60deg);
+            z-index: -2;
+            opacity: 0.1;
+        }
+
+        .static-geometry {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .static-shape {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .shape-1 {
+            top: 20%;
+            left: 10%;
+            width: 100px;
+            height: 100px;
+            border-color: var(--light-grey);
+            transform: rotate(45deg);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+        }
+
+        .shape-2 {
+            top: 60%;
+            right: 15%;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border-color: var(--medium-grey);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
+        }
+
+        .shape-3 {
+            bottom: 20%;
+            left: 20%;
+            width: 80px;
+            height: 80px;
+            border: 2px dashed var(--medium-grey);
+            opacity: 0.3;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--faint-white);
+            padding: 20px 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(255, 255, 255, 0.03);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: var(--pure-white);
+            text-transform: uppercase;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--pure-white);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .logo:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--medium-grey);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            position: relative;
+            padding: 8px 0;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--pure-white);
+            transition: width 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .nav-links a:hover {
+            color: var(--pure-white);
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--pure-white);
+            font-weight: 700;
+        }
+
+        .nav-links a.active::before {
+            width: 100%;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-top: 100px;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 100px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1.1;
+            position: relative;
+            z-index: 10;
+        }
+
+        .title-gradient {
+            background: linear-gradient(90deg, 
+                var(--pure-white), 
+                var(--light-grey),
+                var(--pure-white));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 
+                0 0 40px rgba(255, 255, 255, 0.3),
+                0 0 80px rgba(255, 255, 255, 0.1);
+        }
+
+        .title-outline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.1);
+            z-index: 9;
+        }
+
+        .hero-subtitle {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 40px;
+            color: var(--medium-grey);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* MISSION SECTION */
+        .mission-section {
+            padding: 100px 40px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--faint-white);
+            border-bottom: 1px solid var(--faint-white);
+            margin: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--pure-white);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--pure-white), var(--light-grey));
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .mission-card {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--dark-grey);
+            position: relative;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .mission-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--pure-white);
+            box-shadow: 
+                0 10px 40px rgba(255, 255, 255, 0.1),
+                inset 0 0 30px rgba(255, 255, 255, 0.02);
+            transform: translateY(-10px);
+        }
+
+        .mission-icon {
+            font-size: 48px;
+            margin-bottom: 25px;
+            color: var(--pure-white);
+            height: 80px;
+            width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            margin: 0 auto 25px;
+            border: 1px solid var(--dark-grey);
+        }
+
+        .mission-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--pure-white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .mission-card p {
+            color: var(--medium-grey);
+            line-height: 1.8;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        /* TIMELINE SECTION */
+        .timeline-section {
+            padding: 100px 40px;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, 
+                transparent, 
+                var(--pure-white), 
+                var(--light-grey), 
+                transparent);
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-item {
+            margin-bottom: 80px;
+            position: relative;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--dark-bg);
+            border-radius: 50%;
+            border: 3px solid var(--pure-white);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -50px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -50px;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid var(--dark-grey);
+            backdrop-filter: blur(10px);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--light-grey);
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .timeline-year {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            color: var(--pure-white);
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-content h3 {
+            color: var(--pure-white);
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-content p {
+            color: var(--medium-grey);
+            line-height: 1.7;
+        }
+
+        /* TEAM SECTION */
+        .team-section {
+            padding: 100px 40px;
+            background: rgba(255, 255, 255, 0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 40px 30px;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--dark-grey);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0.02) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .team-card:hover {
+            border-color: var(--pure-white);
+            box-shadow: 
+                0 15px 50px rgba(255, 255, 255, 0.1),
+                inset 0 0 40px rgba(255, 255, 255, 0.03);
+            transform: translateY(-10px);
+        }
+
+        .team-card:hover::before {
+            opacity: 1;
+        }
+
+        .team-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            border: 3px solid var(--pure-white);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+            background: linear-gradient(45deg, var(--pure-white), var(--light-grey));
+            padding: 3px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .team-card h3 {
+            color: var(--pure-white);
+            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-card .position {
+            color: var(--light-grey);
+            margin-bottom: 20px;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-card p {
+            color: var(--medium-grey);
+            font-size: 14px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* STATS SECTION */
+        .stats-section {
+            padding: 100px 40px;
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 1px solid var(--faint-white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-circle {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 25px;
+            background: conic-gradient(
+                var(--pure-white) calc(var(--percentage) * 3.6deg),
+                rgba(255, 255, 255, 0.1) 0deg
+            );
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 0 50px rgba(255, 255, 255, 0.1),
+                inset 0 0 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .stat-circle::before {
+            content: '';
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            background: var(--dark-bg);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--pure-white);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-label {
+            color: var(--medium-grey);
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 15px;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 80px 40px;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--faint-white);
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--pure-white), 
+                var(--light-grey), 
+                transparent);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--pure-white);
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .footer-text {
+            color: var(--medium-grey);
+            font-size: 14px;
+            letter-spacing: 2px;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .footer-divider {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--pure-white), var(--light-grey));
+            margin: 30px auto;
+        }
+
+        /* GLOW EFFECTS */
+        .glow-effect {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .corner-glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .corner-1 {
+            top: 0;
+            left: 0;
+        }
+
+        .corner-2 {
+            bottom: 0;
+            right: 0;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 70px;
+            }
+            
+            .mission-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: calc(100% - 80px);
+                margin-left: 80px !important;
+                margin-right: 0 !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: -50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-title {
+                font-size: 48px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-circle {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .stat-circle::before {
+                width: 140px;
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- STATIC BACKGROUND ELEMENTS -->
+    <div class="static-background"></div>
+    <div class="static-grid"></div>
+    <div class="static-geometry">
+        <div class="static-shape shape-1"></div>
+        <div class="static-shape shape-2"></div>
+        <div class="static-shape shape-3"></div>
+    </div>
+    <div class="glow-effect"></div>
+    <div class="corner-glow corner-1"></div>
+    <div class="corner-glow corner-2"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">SCOUT SALONE</div>
+            <div class="nav-links">
+                <a href="home.php">Home</a>
+                <a href="about.html" class="active">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="players.php">Players</a>
+                <a href="clubs.html">Clubs</a>
+                <a href="matches.html">Matches</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="hero-title">
+                <div class="title-gradient">BEYOND<br>SCOUTING</div>
+                <div class="title-outline">BEYOND<br>SCOUTING</div>
+            </div>
+            <div class="hero-subtitle">Engineering Football's Future</div>
+        </section>
+
+        <!-- MISSION SECTION -->
+        <section class="mission-section">
+            <div class="section-header">
+                <h2 class="section-title">Our Philosophy</h2>
+            </div>
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">🌍</div>
+                    <h3>Global Intelligence</h3>
+                    <p>Our network spans 50+ countries with AI-enhanced scouting systems that analyze talent across every major football region, identifying potential where traditional methods fail.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">⚡</div>
+                    <h3>Tech Revolution</h3>
+                    <p>Proprietary algorithms processing 200+ data points per player. Biometric tracking, performance prediction, and psychological profiling combine to forecast career trajectories.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🎯</div>
+                    <h3>Precision Matching</h3>
+                    <p>Every placement is data-driven. We don't just find talent – we architect career paths, matching players with clubs based on style, culture, and developmental needs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIMELINE SECTION -->
+        <section class="timeline-section">
+            <div class="section-header">
+                <h2 class="section-title">Our Evolution</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2015</div>
+                        <h3>The Foundation</h3>
+                        <p>Established in Sierra Leone with three scouts and a vision to revolutionize African football talent discovery. Started with grassroots scouting in West Africa.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2017</div>
+                        <h3>Tech Integration Era</h3>
+                        <p>Developed ScoutBase v1.0 – proprietary database system. First major success: James Kamara signed to Portuguese Liga with 92% accuracy rating on our prediction.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2019</div>
+                        <h3>Global Expansion</h3>
+                        <p>Opened European headquarters in Lisbon. Partnered with 12 top-tier clubs across Premier League, La Liga, and Bundesliga. Scouting network expanded to 30 countries.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2022</div>
+                        <h3>AI Revolution</h3>
+                        <p>Launched ScoutAI platform featuring machine learning algorithms with 92% prediction accuracy. Implemented biometric tracking and psychological profiling systems.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <h3>Unicorn Status</h3>
+                        <p>Recognized as Africa's first football tech unicorn. 50+ players placed in top European leagues, generating €150M+ in transfer value with 87% career success rate.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEAM SECTION -->
+        <section class="team-section">
+            <div class="section-header">
+                <h2 class="section-title">The Architects</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400&auto=format&fit=crop&q=60" alt="CEO">
+                    </div>
+                    <h3>DAVID KAMARA</h3>
+                    <div class="position">FOUNDER & CEO</div>
+                    <p>Former Sierra Leone national team captain turned tech entrepreneur. Architect of the ScoutAI platform and global expansion strategy.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=60" alt="Head Scout">
+                    </div>
+                    <h3>SARAH JOHNSON</h3>
+                    <div class="position">CHIEF SCOUTING OFFICER</div>
+                    <p>25 years in European football scouting. Discovered 15 current Premier League players. Leads our 50+ global scouting network.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&auto=format&fit=crop&q=60" alt="CTO">
+                    </div>
+                    <h3>MOHAMED DIALLO</h3>
+                    <div class="position">CHIEF TECHNOLOGY OFFICER</div>
+                    <p>MIT Computer Science graduate. Built the predictive algorithms powering our 92% accuracy rating. Leads team of 25 data scientists.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS SECTION -->
+        <section class="stats-section">
+            <div class="section-header">
+                <h2 class="section-title">By The Numbers</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-circle" style="--percentage: 87">
+                        <div class="stat-number">87%</div>
+                    </div>
+                    <div class="stat-label">Career Success Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-circle" style="--percentage: 92">
+                        <div class="stat-number">92%</div>
+                    </div>
+                    <div class="stat-label">AI Prediction Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-circle" style="--percentage: 150">
+                        <div class="stat-number">150M€</div>
+                    </div>
+                    <div class="stat-label">Transfer Value Generated</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-circle" style="--percentage: 50">
+                        <div class="stat-number">50+</div>
+                    </div>
+                    <div class="stat-label">Countries Covered</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-logo">SCOUT SALONE</div>
+            <div class="footer-divider"></div>
+            <p class="footer-text">We are building the future of football talent discovery. Through technology, data, and human insight, we're not just finding players – we're engineering legends.</p>
+            <br>
+            <p class="footer-text">2025 SCOUT SALONE FOOTBALL AGENCY © ALL RIGHTS RESERVED</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple hover effects only
+        document.querySelectorAll('.mission-card, .team-card, .timeline-content').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = card.style.transform.includes('translateY') 
+                    ? card.style.transform 
+                    : getComputedStyle(card).transform === 'none' 
+                        ? 'translateY(-10px)' 
+                        : getComputedStyle(card).transform + ' translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = card.style.transform.replace(' translateY(-10px)', '');
+            });
+        });
+    </script>
+</body>
+</html>
